@@ -1,7 +1,7 @@
 import CompaniesService from '@/services/companies.service';
 import { FETCH_USER_COMPANIES, CREATE_USER_COMPANY, STORE_USER_COMPANY,
-EDIT_USER_COMPANY, UPDATE_USER_COMPANY, DELETE_USER_COMPANY, TOP_USER_COMPANY
-} from '@/store/actions.type';
+EDIT_USER_COMPANY, UPDATE_USER_COMPANY, DELETE_USER_COMPANY, TOP_USER_COMPANY,
+ORDERS_USER_COMPANY } from '@/store/actions.type';
 import { SET_LOADING, SET_USER_COMPANIES, CLEAR_ERRORS } from '@/store/mutations.type';
 
  
@@ -105,6 +105,23 @@ const actions = {
       context.commit(SET_LOADING, true);
       return new Promise((resolve, reject) => {
          CompaniesService.top(id)
+         .then(() => {
+            resolve(true);
+         })
+         .catch(error => {
+            reject(error);
+         })
+         .finally(() => { 
+            context.commit(SET_LOADING, false);
+         })
+      })
+   },
+   [ORDERS_USER_COMPANY](context, models) {
+      
+      console.log(ORDERS_USER_COMPANY, models);
+      context.commit(SET_LOADING, true);
+      return new Promise((resolve, reject) => {
+         CompaniesService.orders(models)
          .then(() => {
             resolve(true);
          })

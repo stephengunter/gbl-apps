@@ -45,6 +45,7 @@ export const EDIT_USER_COMPANY = 'editUserCompany';
 export const UPDATE_USER_COMPANY = 'updateUserCompany';
 export const DELETE_USER_COMPANY = 'deleteUserCompany';
 export const TOP_USER_COMPANY = 'topUserCompany';
+export const ORDERS_USER_COMPANY = 'ordersUserCompany';
 
 // Posts
 export const FETCH_POSTS = 'fetchPosts';

@@ -48,7 +48,7 @@ import { mapState, mapGetters } from 'vuex';
 import { SET_BREAD_ITEMS, SET_LOADING, CLEAR_ERRORS } from '@/store/mutations.type';
 import { FETCH_USER_COMPANIES, CREATE_USER_COMPANY, STORE_USER_COMPANY,
 EDIT_USER_COMPANY, UPDATE_USER_COMPANY, DELETE_USER_COMPANY, TOP_USER_COMPANY,
-ON_ERROR, SHOW_CONFIRM, SUCCESS 
+ORDERS_USER_COMPANY, ON_ERROR, SHOW_CONFIRM, SUCCESS 
 } from '@/store/actions.type';
 import { DIALOG_MAX_WIDTH, USER_COMPANIES } from '@/config';
 import { INDEX, CREATE, EDIT, DELETE } from '@/consts';
@@ -241,8 +241,15 @@ export default {
 			})
       },
       saveOrders() {
-         let orders = this.treeCompanies.getOrders();
-         console.log('orders', orders);
+         let models = this.treeCompanies.getOrders();
+         this.$store.dispatch(ORDERS_USER_COMPANY, models)
+			.then(() => {
+				this.init();
+				this.fetchData();
+			})
+			.catch(error => {
+				this.onError(error);
+			})
       }
       
 	}

@@ -17,4 +17,6 @@ const remove = (id) => BaseService.remove(`${source}/${id}`);
 
 const top = (id) => BaseService.put(`${source}/top/${id}`);
 
-export default { fetch, create, store, edit, update, remove, top };
+const orders = (models) => BaseService.post(`${source}/orders`, models);
+
+export default { fetch, create, store, edit, update, remove, top, orders };
